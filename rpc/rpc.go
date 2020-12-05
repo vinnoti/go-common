@@ -26,16 +26,17 @@ func CallRPC(url string, methodName string, args interface{}, reply interface{})
 		return err
 	}
 
+	err = json.DecodeClientResponse(resp.Body, &reply)
+	if err != nil {
+		log.Errorf(err.Error())
+		return err
+	}
+
 	err = resp.Body.Close()
 	if err != nil {
 		log.Errorf(err.Error())
 		return err
 	}
 
-	err = json.DecodeClientResponse(resp.Body, &reply)
-	if err != nil {
-		log.Errorf(err.Error())
-		return err
-	}
 	return nil
 }
