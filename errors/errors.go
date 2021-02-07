@@ -3,31 +3,31 @@ package errors
 import "fmt"
 
 type DataNotFoundError struct {
-	entity string
-	key    string
-	err    error
+	Entity string
+	Key    string
+	Err    error
 }
 
 func (e *DataNotFoundError) Error() string {
-	return fmt.Sprintf("Data %s not found with key %s: %s", e.entity, e.key, e.err)
+	return fmt.Sprintf("Data %s not found with key %s: %s", e.Entity, e.Key, e.Err)
 }
 
 type SaveError struct {
-	entity string
-	err    error
+	Entity string
+	Err    error
 }
 
 func (e *SaveError) Error() string {
-	return fmt.Sprintf("Failed to save %s: %s", e.entity, e.err)
+	return fmt.Sprintf("Failed to save %s: %s", e.Entity, e.Err)
 }
 
 type ValidationError struct {
-	entity string
-	err    error
+	Entity string
+	Err    error
 }
 
 func (e *ValidationError) Error() string {
-	return fmt.Sprintf("Unable to validate %s: %s", e.entity, e.err)
+	return fmt.Sprintf("Unable to validate %s: %s", e.Entity, e.Err)
 }
 
 type InvalidCredentialsError struct{}
@@ -37,20 +37,20 @@ func (e *InvalidCredentialsError) Error() string {
 }
 
 type ClassCodeNotAvailableError struct {
-	code string
+	Code string
 }
 
 func (e *ClassCodeNotAvailableError) Error() string {
-	return fmt.Sprintf("Class code %s is not available.", e.code)
+	return fmt.Sprintf("Class code %s is not available.", e.Code)
 }
 
 type UnauthorizedError struct {
-	action string
-	entity string
+	Action string
+	Entity string
 }
 
 func (e *UnauthorizedError) Error() string {
-	return fmt.Sprintf("You don't have permission to %s %s.", e.action, e.entity)
+	return fmt.Sprintf("You don't have permission to %s %s.", e.Action, e.Entity)
 }
 
 type InvalidClassCode struct{}
