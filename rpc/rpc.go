@@ -2,13 +2,13 @@ package rpc
 
 import (
 	"bytes"
-	"github.com/gorilla/rpc/json"
+	"github.com/gorilla/rpc/v2/json2"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 )
 
-func CallRPC(url string, methodName string, args interface{}, reply interface{}) error {
-	message, err := json.EncodeClientRequest(methodName, args)
+func Call(url string, methodName string, args interface{}, reply interface{}) error {
+	message, err := json2.EncodeClientRequest(methodName, args)
 	if err != nil {
 		log.Errorf("%s", err)
 		return err
@@ -26,7 +26,7 @@ func CallRPC(url string, methodName string, args interface{}, reply interface{})
 		return err
 	}
 
-	err = json.DecodeClientResponse(resp.Body, &reply)
+	err = json2.DecodeClientResponse(resp.Body, &reply)
 	if err != nil {
 		log.Errorf(err.Error())
 		return err
