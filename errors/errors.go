@@ -1,6 +1,8 @@
 package errors
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type DataNotFoundError struct {
 	Entity string
@@ -9,7 +11,7 @@ type DataNotFoundError struct {
 }
 
 func (e *DataNotFoundError) Error() string {
-	return fmt.Sprintf("Data %s not found with key %s: %s", e.Entity, e.Key, e.Err)
+	return fmt.Sprintf("data %s not found with key %s: %s", e.Entity, e.Key, e.Err)
 }
 
 type SaveError struct {
@@ -18,7 +20,7 @@ type SaveError struct {
 }
 
 func (e *SaveError) Error() string {
-	return fmt.Sprintf("Failed to save %s: %s", e.Entity, e.Err)
+	return fmt.Sprintf("failed to save %s: %s", e.Entity, e.Err)
 }
 
 type ValidationError struct {
@@ -27,13 +29,13 @@ type ValidationError struct {
 }
 
 func (e *ValidationError) Error() string {
-	return fmt.Sprintf("Unable to validate %s: %s", e.Entity, e.Err)
+	return fmt.Sprintf("unable to validate %s: %s", e.Entity, e.Err)
 }
 
 type InvalidCredentialsError struct{}
 
 func (e *InvalidCredentialsError) Error() string {
-	return fmt.Sprintf("Invalid credentials. Please re-check.")
+	return fmt.Sprintf("invalid credentials. Please re-check.")
 }
 
 type ClassCodeNotAvailableError struct {
@@ -41,7 +43,7 @@ type ClassCodeNotAvailableError struct {
 }
 
 func (e *ClassCodeNotAvailableError) Error() string {
-	return fmt.Sprintf("Class code %s is not available.", e.Code)
+	return fmt.Sprintf("class code %s is not available.", e.Code)
 }
 
 type UnauthorizedError struct {
@@ -50,11 +52,27 @@ type UnauthorizedError struct {
 }
 
 func (e *UnauthorizedError) Error() string {
-	return fmt.Sprintf("You don't have permission to %s %s.", e.Action, e.Entity)
+	return fmt.Sprintf("you don't have permission to %s %s.", e.Action, e.Entity)
 }
 
 type InvalidClassCode struct{}
 
 func (e *InvalidClassCode) Error() string {
-	return fmt.Sprintf("Class code should be 6 character alphanumeric.")
+	return fmt.Sprintf("class code should be 6 character alphanumeric.")
+}
+
+type EmailRegistered struct {
+	Email string
+}
+
+func (e *EmailRegistered) Error() string {
+	return fmt.Sprintf("email %s already registered.", e.Email)
+}
+
+type EmailAlreadyVerified struct {
+	Email string
+}
+
+func (e *EmailAlreadyVerified) Error() string {
+	return fmt.Sprintf("email %s already verified.", e.Email)
 }
