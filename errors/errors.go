@@ -14,4 +14,5 @@ var (
 	ErrInvalidClassCode       = errors.New("class code should be 6 character alphanumeric")
 	ErrEmailAlreadyRegistered = errors.New("this email address is already registered")
 	ErrEmailAlreadyVerified   = errors.New("this email address is already verified")
+	ErrUserNotRegistered      = errors.New("this email address is not yet registered")
 )
